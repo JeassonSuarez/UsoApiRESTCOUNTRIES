@@ -1,0 +1,31 @@
+.header{
+    height: 45px;
+    background-color: var(--blanco-dm-texto-lm-elementos);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    color: var(--azul-oscuro-lm-texto);
+    border-bottom: 1px solid rgb(234, 234, 234);
+}
+
+.mode{
+    display: flex;
+    margin: 0;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.mode>img{
+    object-fit: cover;
+    max-width: 12px;
+    max-height: 12px;
+    margin-right: 5px;
+}
+
+.header-title{
+    font-size: 24px;
+}
+
+
