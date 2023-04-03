@@ -100,3 +100,7 @@
     
 }
 
+
+.select-continente-over-active{
+    background-color: var(--gris-claro-lm-background);
+}

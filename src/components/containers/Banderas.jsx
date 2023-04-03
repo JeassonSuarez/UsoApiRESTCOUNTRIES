@@ -13,9 +13,25 @@ const Banderas = () => {
   ]);
 
   const [activeSelectContinente, setActiveSelectContinente] = useState('');
+  const [continenteSeleccionado, setContinenteSeleccionado] = useState('');
+
+  const handleClickContineneteSeleccionado = (e) => {
+    setContinenteSeleccionado(e.target.textContent)
+  }
 
   const handleSelectActiveContinente = () => {
     activeSelectContinente === '' ? setActiveSelectContinente('select-continente-active') : setActiveSelectContinente('');
+  }
+
+  const handleOnmouseOverCont = (e) => {
+    console.log(e.target.textContent);
+    (e.target.classList.add('select-continente-over-active'));
+    // activeMouseOverContinente === '' && setActiveMouseOverContinente('select-continente-over-active');
+  }
+  
+  const handleOnmouseOutCont = (e) => {
+    (e.target.classList.remove('select-continente-over-active'));
+    // activeMouseOverContinente === 'select-continente-over-active' && setActiveMouseOverContinente('');
   }
 
   return (
@@ -27,11 +43,11 @@ const Banderas = () => {
       <div className="main-select">
         <div className="select-filter" onClick={handleSelectActiveContinente}>
             <img src={outlineSelect} alt="select" className="img-control" />
-            <p>Filtrar por continente</p>
+            <p>{continenteSeleccionado === '' ? 'Filtrar por continente' : continenteSeleccionado}</p>
         </div>
         <div className={`select-continente ${activeSelectContinente}`}>
         {continente.map((con) => {
-            return <p key={con}>{con}</p>;
+            return <p key={con} onMouseOver={handleOnmouseOverCont} onMouseOut={handleOnmouseOutCont} onClick={handleClickContineneteSeleccionado}>{con}</p>;
           })}
         </div>
       </div>
