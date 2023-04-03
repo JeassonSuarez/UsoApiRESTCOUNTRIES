@@ -181,6 +181,12 @@ h1{
   font-size: 2em;
 }
 
+h2{
+  color: var(--azul-oscuro-lm-texto);
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
 .h1-darkmode{
   color: var(--blanco-dm-texto-lm-elementos);
 }

@@ -1,0 +1,19 @@
+.pais{
+    width: 350px;
+    background-color: var(--blanco-dm-texto-lm-elementos);
+    border: 1px solid rgb(234, 234, 234);
+    border-radius: 5px;
+}
+
+.pais-data{
+    color: var(--azul-oscuro-lm-texto);
+    padding: 15px;
+}
+
+.pais-data>h2{
+    padding-bottom: 15px ;
+}
+
+.pais-data>p>span{
+    font-weight: 900;
+}

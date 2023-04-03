@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import buscar from "../../imagenes/buscar.svg";
 import outlineSelect from "../../imagenes/outline.svg";
 import "../../styles/contenido.css";
+import Pais from "../pure/Pais";
 
 const Banderas = () => {
   const [continente, setContinente] = useState([
@@ -24,7 +25,7 @@ const Banderas = () => {
   }
 
   const handleOnmouseOverCont = (e) => {
-    console.log(e.target.textContent);
+    // console.log(e.target.textContent);
     (e.target.classList.add('select-continente-over-active'));
     // activeMouseOverContinente === '' && setActiveMouseOverContinente('select-continente-over-active');
   }
@@ -43,14 +44,24 @@ const Banderas = () => {
       <div className="main-select">
         <div className="select-filter" onClick={handleSelectActiveContinente}>
             <img src={outlineSelect} alt="select" className="img-control" />
-            <p>{continenteSeleccionado === '' ? 'Filtrar por continente' : continenteSeleccionado}</p>
+            <button>{continenteSeleccionado === '' ? 'Filtrar por continente' : continenteSeleccionado}</button>
         </div>
         <div className={`select-continente ${activeSelectContinente}`}>
         {continente.map((con) => {
-            return <p key={con} onMouseOver={handleOnmouseOverCont} onMouseOut={handleOnmouseOutCont} onClick={handleClickContineneteSeleccionado}>{con}</p>;
+            return <button key={con} onMouseOver={handleOnmouseOverCont} onMouseOut={handleOnmouseOutCont} onClick={handleClickContineneteSeleccionado}>{con}</button>;
           })}
         </div>
       </div>
+      <div className="div-list-paises">
+        <Pais />
+        <Pais />
+        <Pais />
+        <Pais />
+        <Pais />
+        <Pais />
+        <Pais />
+      </div>
+
     </main>
   );
 };

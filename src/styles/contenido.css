@@ -4,8 +4,11 @@
 }
 
 .main-select{
-
     width: 212px;
+}
+
+.main-select>*{
+    cursor: pointer;
 }
 
 .main-buscador{
@@ -15,14 +18,12 @@
 }
 
 .main-select{
-    cursor: pointer;
     position:absolute;
     right: 100px;
     top: 100px;
 }
 
 .main-buscador, .select-filter{
-    height: fit-content;
     display: flex;
     flex-direction: row;
     padding: 5px;
@@ -64,8 +65,10 @@
     visibility: visible;
 }
 
-.select-continente>p{
+.select-continente>button{
     color: var(--azul-oscuro-lm-texto);
+    text-align: left;
+    padding: 5px;
 }
 
 .img-control{
@@ -87,7 +90,7 @@
     right: 11px;
 }
 
-.select-filter>p{
+.select-filter>button{
     margin-right: 30px;
     color: var(--azul-oscuro-lm-texto);
 }
@@ -103,4 +106,16 @@
 
 .select-continente-over-active{
     background-color: var(--gris-claro-lm-background);
+}
+
+.div-list-paises{
+    position: absolute;
+    top: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 0 100px 100px;
+    width: 100%;
 }
