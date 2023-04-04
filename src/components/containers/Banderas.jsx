@@ -3,6 +3,8 @@ import buscar from "../../imagenes/buscar.svg";
 import outlineSelect from "../../imagenes/outline.svg";
 import "../../styles/contenido.css";
 import Pais from "../pure/Pais";
+import data from '../../models/data.json'
+
 
 const Banderas = () => {
   const [continente, setContinente] = useState([
@@ -53,14 +55,10 @@ const Banderas = () => {
         </div>
       </div>
       <div className="div-list-paises">
-        <Pais />
-        <Pais />
-        <Pais />
-        <Pais />
-        <Pais />
-        <Pais />
-        <Pais />
-      </div>
+  {data.map((e, i) => {
+    return <Pais key={i} data={e} />
+  })}
+</div>
 
     </main>
   );

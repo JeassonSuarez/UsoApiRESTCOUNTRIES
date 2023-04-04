@@ -17,3 +17,7 @@
 .pais-data>p>span{
     font-weight: 900;
 }
+
+.pais>img{
+    height: 200px;
+}
