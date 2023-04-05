@@ -3,10 +3,14 @@ import buscar from "../../imagenes/buscar.svg";
 import outlineSelect from "../../imagenes/outline.svg";
 import "../../styles/contenido.css";
 import Pais from "../pure/Pais";
-import data from '../../models/data.json'
-
+// import data from '../../models/data.json'
+import useFetch from "../../hooks/useFetch";
 
 const Banderas = () => {
+  const { data, loadingData, error } = useFetch("https://restcountries.com/v3.1/all");
+
+  console.log(data);
+
   const [continente, setContinente] = useState([
     "Africa",
     "America",
@@ -15,27 +19,29 @@ const Banderas = () => {
     "Oseania",
   ]);
 
-  const [activeSelectContinente, setActiveSelectContinente] = useState('');
-  const [continenteSeleccionado, setContinenteSeleccionado] = useState('');
+  const [activeSelectContinente, setActiveSelectContinente] = useState("");
+  const [continenteSeleccionado, setContinenteSeleccionado] = useState("");
 
   const handleClickContineneteSeleccionado = (e) => {
-    setContinenteSeleccionado(e.target.textContent)
-  }
+    setContinenteSeleccionado(e.target.textContent);
+  };
 
   const handleSelectActiveContinente = () => {
-    activeSelectContinente === '' ? setActiveSelectContinente('select-continente-active') : setActiveSelectContinente('');
-  }
+    activeSelectContinente === ""
+      ? setActiveSelectContinente("select-continente-active")
+      : setActiveSelectContinente("");
+  };
 
   const handleOnmouseOverCont = (e) => {
     // console.log(e.target.textContent);
-    (e.target.classList.add('select-continente-over-active'));
+    e.target.classList.add("select-continente-over-active");
     // activeMouseOverContinente === '' && setActiveMouseOverContinente('select-continente-over-active');
-  }
-  
+  };
+
   const handleOnmouseOutCont = (e) => {
-    (e.target.classList.remove('select-continente-over-active'));
+    e.target.classList.remove("select-continente-over-active");
     // activeMouseOverContinente === 'select-continente-over-active' && setActiveMouseOverContinente('');
-  }
+  };
 
   return (
     <main className="main-content">
@@ -45,21 +51,35 @@ const Banderas = () => {
       </div>
       <div className="main-select">
         <div className="select-filter" onClick={handleSelectActiveContinente}>
-            <img src={outlineSelect} alt="select" className="img-control" />
-            <button>{continenteSeleccionado === '' ? 'Filtrar por continente' : continenteSeleccionado}</button>
+          <img src={outlineSelect} alt="select" className="img-control" />
+          <button>
+            {continenteSeleccionado === ""
+              ? "Filtrar por continente"
+              : continenteSeleccionado}
+          </button>
         </div>
         <div className={`select-continente ${activeSelectContinente}`}>
-        {continente.map((con) => {
-            return <button key={con} onMouseOver={handleOnmouseOverCont} onMouseOut={handleOnmouseOutCont} onClick={handleClickContineneteSeleccionado}>{con}</button>;
+          {continente.map((con) => {
+            return (
+              <button
+                key={con}
+                onMouseOver={handleOnmouseOverCont}
+                onMouseOut={handleOnmouseOutCont}
+                onClick={handleClickContineneteSeleccionado}
+              >
+                {con}
+              </button>
+            );
           })}
         </div>
       </div>
       <div className="div-list-paises">
-  {data.map((e, i) => {
-    return <Pais key={i} data={e} />
-  })}
-</div>
-
+        {error && <h2>{error}</h2>}
+        {loadingData && <h2>Cargando informacion de paises...</h2>}
+        {data?.map((e, i) => {
+          return <Pais key={i} data={e} />;
+        })}
+      </div>
     </main>
   );
 };
