@@ -17,6 +17,18 @@
     top: 100px;
 }
 
+.main-volver{
+    position: relative;
+    left: 100px;
+    top: 100px;
+}
+
+
+
+.main-buscador>input{
+    color: var(--azul-oscuro-lm-texto);
+}
+
 .main-select{
     position:absolute;
     right: 100px;
@@ -24,7 +36,7 @@
     z-index: 2;
 }
 
-.main-buscador, .select-filter{
+.main-buscador, .select-filter, .main-volver{
     display: flex;
     flex-direction: row;
     padding: 5px;
@@ -43,7 +55,18 @@
     width: fit-content;
 }
 
+.main-volver{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    cursor: pointer;
+}
 
+.main-volver>span{
+    margin-left: 27px;
+    color: var(--azul-oscuro-lm-texto);
+    font-weight: 600;
+}
 
 .select-continente{
     display: flex;
@@ -126,3 +149,23 @@
     text-align: center;
     margin-top: 100px;
 }
+
+.main-pais-completo{
+    position: absolute;
+    top: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%;
+    padding: 0 100px 0 100px;
+}
+
+.main-pais-completo>img{
+    width: 500px;
+}
+
+.pais-data-completo{
+    padding-top:  40px;
+    padding-bottom: 40px;
+}
+

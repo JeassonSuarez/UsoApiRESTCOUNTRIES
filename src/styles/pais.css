@@ -3,6 +3,7 @@
     background-color: var(--blanco-dm-texto-lm-elementos);
     border: 1px solid rgb(234, 234, 234);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .pais-data{

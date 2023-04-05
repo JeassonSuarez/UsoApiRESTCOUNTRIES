@@ -3,10 +3,16 @@ import React from 'react'
 import '../../styles/pais.css'
 
 
-const Pais = ({ data }) => {
+const Pais = ({ data, abrirPais, mostrarPaisCompleto }) => {
+
+  const handleClick = () =>{ 
+    abrirPais(!mostrarPaisCompleto, data)
+  }
+
+
   // console.log(data, 'dddddddddd');
   return (
-    <div className='pais'>
+    <div className='pais' onClick={handleClick}>
         <img src={data.flags.svg} alt={data.flags.alt} />
         <div className='pais-data'>
           <h2>{data.name.common}</h2>
