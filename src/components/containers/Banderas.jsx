@@ -7,13 +7,15 @@ import Pais from "../pure/Pais";
 // import data from '../../models/data.json'
 import useFetch from "../../hooks/useFetch";
 import useRegiones from "../../hooks/useRegiones";
+import { mode } from "../../models/mode.model";
 
-const Banderas = () => {
+const Banderas = ({modeBg}) => {
   const [activeSelectContinente, setActiveSelectContinente] = useState("");
   const [continenteSeleccionado, setContinenteSeleccionado] = useState("Todas");
   const [busquedaNombre, setBusquedaNombre] = useState("");
   const [mostrarPaisCompleto, setMostrarPaisCompleto] = useState(false);
   const [dataPaisCompleto, setDataPaisCompleto] = useState(null);
+  
 
   const apiUrl =
     continenteSeleccionado === "Todas" && busquedaNombre === ""
@@ -63,46 +65,48 @@ const Banderas = () => {
   };
 
   return (
-    <main className="main-content">
+    <main className={`main-content ${modeBg.title===mode.darkMode.title ? 'main-dark' : 'main-light' } `}>
       {mostrarPaisCompleto === false ? (
         <>
-          <div className="main-buscador">
-            <img src={buscar} alt="buscar" className="img-control" />
-            <input
-              type="text"
-              placeholder="Buscar Pais"
-              onKeyDown={handleBuscar}
-              onChange={handleChangeBuscar}
-            />
-          </div>
-          <div className="main-select">
-            <div
-              className="select-filter"
-              onClick={handleSelectActiveContinente}
-            >
-              <img src={outlineSelect} alt="select" className="img-control" />
-              <button>
-                {continenteSeleccionado === "Todas"
-                  ? "Filtrar por region"
-                  : continenteSeleccionado}
-              </button>
+          <div className={`div-controls ${modeBg.title===mode.darkMode.title ? 'controls-dark' : 'controls-light' } `}>
+            <div className={`main-buscador ${modeBg.title===mode.darkMode.title ? 'select-dark' : 'select-light' } `}>
+              <img src={buscar} alt="buscar" className="img-control" />
+              <input
+                type="text"
+                placeholder="Buscar Pais"
+                onKeyDown={handleBuscar}
+                onChange={handleChangeBuscar}
+              />
             </div>
-            <div className={`select-continente ${activeSelectContinente}`}>
-              {unicasRegiones.map((con) => {
-                return (
-                  <button
-                    key={con}
-                    onMouseOver={handleOnmouseOverCont}
-                    onMouseOut={handleOnmouseOutCont}
-                    onClick={handleClickContineneteSeleccionado}
-                  >
-                    {con}
-                  </button>
-                );
-              })}
+            <div className={`main-select ${modeBg.title===mode.darkMode.title ? 'select-dark' : 'select-light' } `}>
+              <div
+                className={`select-filter ${modeBg.title===mode.darkMode.title ? 'select-dark' : 'select-light' } `}
+                onClick={handleSelectActiveContinente}
+              >
+                <img src={outlineSelect} alt="select" className="img-control" />
+                <button>
+                  {continenteSeleccionado === "Todas"
+                    ? "Filtrar por region"
+                    : continenteSeleccionado}
+                </button>
+              </div>
+              <div className={`select-continente ${activeSelectContinente} ${modeBg.title===mode.darkMode.title ? 'select-dark' : 'select-light' } `}>
+                {unicasRegiones.map((con) => {
+                  return (
+                    <button
+                      key={con}
+                      onMouseOver={handleOnmouseOverCont}
+                      onMouseOut={handleOnmouseOutCont}
+                      onClick={handleClickContineneteSeleccionado}
+                    >
+                      {con}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
-          <div className="div-list-paises">
+          <div className={`div-list-paises ${modeBg.title===mode.darkMode.title ? 'main-dark' : 'main-light' } `}>
             {error && <h2>{error}</h2>}
             {loadingData && <h2>Cargando informacion de paises...</h2>}
             {data && data.status !== 404 ? (
@@ -113,6 +117,7 @@ const Banderas = () => {
                     data={e}
                     abrirPais={abrirPais}
                     mostrarPaisCompleto={mostrarPaisCompleto}
+                    modeBg ={modeBg}
                   />
                 );
               })
@@ -124,7 +129,7 @@ const Banderas = () => {
       ) : (
         <>
           <div
-            className="main-volver"
+            className={`main-volver ${modeBg.title===mode.darkMode.title ? 'main-volver-dark' : 'main-volver-light' } `}
             onClick={() => setMostrarPaisCompleto(!mostrarPaisCompleto)}
           >
             <img src={volver} alt="volver" className="img-control" />
@@ -135,7 +140,7 @@ const Banderas = () => {
               src={dataPaisCompleto.flags.svg}
               alt={dataPaisCompleto.flags.alt}
             />
-            <div className="pais-data pais-data-completo">
+            <div className={`pais-data pais-data-completo ${modeBg.title===mode.darkMode.title ? 'main-volver-dark' : 'main-volver-light' } `}>
               <h2>{dataPaisCompleto.name.common}</h2>
               <p>
                 <span>Nombre nativo: </span>
@@ -159,18 +164,27 @@ const Banderas = () => {
               </p>
               <p>
                 <span>Dominio: </span>
-                {dataPaisCompleto.tld.map((e, i) => e + (i === dataPaisCompleto.tld.length-1 ? "" : ", "))}
+                {dataPaisCompleto.tld.map(
+                  (e, i) =>
+                    e + (i === dataPaisCompleto.tld.length - 1 ? "" : ", ")
+                )}
               </p>
               <p>
                 <span>Moneda: </span>
-                {Object.keys(dataPaisCompleto.currencies).map((currency) => 
-                  dataPaisCompleto.currencies[currency].name)}
+                {Object.keys(dataPaisCompleto.currencies).map(
+                  (currency) => dataPaisCompleto.currencies[currency].name
+                )}
               </p>
               <p>
                 <span>Lenguajes: </span>
-                {Object.keys(dataPaisCompleto.languages).map((language, i) => 
-                  dataPaisCompleto.languages[language] + (i===Object.keys(dataPaisCompleto.languages).length-1 ? '' : ', '))}
-                  {/* {Object.keys(dataPaisCompleto.languages).map(l=>l)} */}
+                {Object.keys(dataPaisCompleto.languages).map(
+                  (language, i) =>
+                    dataPaisCompleto.languages[language] +
+                    (i === Object.keys(dataPaisCompleto.languages).length - 1
+                      ? ""
+                      : ", ")
+                )}
+                {/* {Object.keys(dataPaisCompleto.languages).map(l=>l)} */}
               </p>
             </div>
           </div>

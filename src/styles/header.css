@@ -1,11 +1,10 @@
 .header{
     height: 45px;
-    background-color: var(--blanco-dm-texto-lm-elementos);
+    /* background-color: var(--blanco-dm-texto-lm-elementos); */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px;
-    color: var(--azul-oscuro-lm-texto);
     border-bottom: 1px solid rgb(234, 234, 234);
 }
 
@@ -26,6 +25,21 @@
 
 .header-title{
     font-size: 24px;
+}
+
+.header-dark>*, .header-dark{
+    background-color: var(--azul-oscuro-dm-background);
+    color: var(--blanco-dm-texto-lm-elementos);
+}
+
+
+.img-dark{
+    filter: brightness(0) invert(1);
+}
+
+.header-light>*, .header-light{
+    color: var(--azul-oscuro-lm-texto);
+    background-color: var(--gris-claro-lm-background);
 }
 
 

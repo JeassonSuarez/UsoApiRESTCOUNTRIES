@@ -4,14 +4,19 @@ import './App.css'
 import Pais from './components/pure/Pais'
 import Header from './components/pure/Header'
 import Banderas from './components/containers/Banderas'
+import { mode } from './models/mode.model'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [mbg, setMbg] = useState(mode.lightMode)
+
+  const modeBg = (m) => {
+    setMbg(m);
+  }
 
   return (
-    <div className='app'>
-      <Header />
-      <Banderas />
+    <div className={`app ${mbg.title===mode.darkMode.title ? 'app-dark' : 'app-light'}`}>
+      <Header modeBg={modeBg}/>
+      <Banderas modeBg={mbg}/>
     </div>
   )
 }

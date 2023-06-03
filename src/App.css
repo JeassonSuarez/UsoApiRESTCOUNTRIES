@@ -1,6 +1,10 @@
 .app{
-  background-color: var(--gris-claro-lm-background);
   width: 100vw;
   margin: 0;
   position:relative;
+  height: fit-content;
+}
+
+.app-dark{
+  background-color: red ;
 }

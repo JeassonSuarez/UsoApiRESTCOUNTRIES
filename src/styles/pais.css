@@ -23,3 +23,13 @@
     height: 200px;
     object-fit: cover;
 }
+
+.pais-dark>*, .pais-dark>.pais-data>h2{
+    background-color: var(--azul-oscuro-dm-background);
+    color: var(--blanco-dm-texto-lm-elementos);
+}
+
+.pais-light{
+    background-color: var(--gris-claro-lm-background);
+    color: var(--azul-oscuro-lm-texto);
+}
